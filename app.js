@@ -15,22 +15,29 @@ scores = [0, 0];
 roundScore = 0;
 // 0 for first player, 1 for second player
 currentPlayer = 0;
-// randomly generate a number between 1 and 6 inclusive
-dice = Math.floor(Math.random()*6) + 1;
 
-// select element with id current-0 or current-1 with document.querySelector('#score-0')
-// read or change text of selected element using textContent
-
-// set value
-document.querySelector('#current-1').textContent = dice;
-
-// use innerHTML to pass html as a string from js
-document.querySelector('#current-' + currentPlayer).innerHTML = '<em>' + dice + '</em>';
-dice = Math.floor(Math.random()*6) + 1;
-
-// get value
-var x = document.querySelector('#score-0').textContent;
-console.log(x);
 
 // hide element
 document.querySelector('.dice').style.display = 'none';
+
+// add event listener after selecting an element
+// takes 2 arguments:
+// 1) event type (click, hover etc.) and
+// 2) the function taht will be called when the event happens
+// skip () after function name because you want it to be called by event listener
+// btn() will be defined as a function
+// document.querySelector('.btn-roll').addEventListener('click', btn);
+// OR
+// the function here can only be used here and not anywhere else
+// this is an anonymous function
+document.querySelector('.btn-roll').addEventListener('click', function() {
+  // randomly generate a number between 1 and 6 inclusive
+  dice = Math.floor(Math.random()*6) + 1;
+  // display outcome of roll after value of dice is set
+  document.querySelector('#current-' + currentPlayer).innerHTML = dice;
+  // update round score
+  roundScore = document.querySelector('#score-' + currentPlayer).textContent;
+  roundScore = parseInt(roundScore) + parseInt(dice);
+  // display round score
+  document.querySelector('#score-' + currentPlayer).innerHTML = roundScore;
+});
