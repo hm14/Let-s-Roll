@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 
-var scores, roundScore, currentPlayer, dice;
+var scores, roundScore, currentPlayer;
 
 scores = [0, 0];
 roundScore = 0;
@@ -20,10 +20,13 @@ currentPlayer = 0;
 // hide element
 document.querySelector('.dice').style.display = 'none';
 
+// get element by id instead of using query slecetor
+document.getElementById('score-0').textContent = '0';
+
 // add event listener after selecting an element
 // takes 2 arguments:
 // 1) event type (click, hover etc.) and
-// 2) the function taht will be called when the event happens
+// 2) the function that will be called when the event happens
 // skip () after function name because you want it to be called by event listener
 // btn() will be defined as a function
 // document.querySelector('.btn-roll').addEventListener('click', btn);
@@ -32,9 +35,16 @@ document.querySelector('.dice').style.display = 'none';
 // this is an anonymous function
 document.querySelector('.btn-roll').addEventListener('click', function() {
   // randomly generate a number between 1 and 6 inclusive
-  dice = Math.floor(Math.random()*6) + 1;
+  var dice = Math.floor(Math.random()*6) + 1;
   // display outcome of roll after value of dice is set
   document.querySelector('#current-' + currentPlayer).innerHTML = dice;
+  // seleta nd save value dice DOM element
+  var diceDOM = document.querySelector('.dice');
+  // show dice element
+  diceDOM.style.display = 'block';
+  // update img src of dice DOM element
+  diceDOM.src = 'dice-' + dice + '.png';
+  // document.querySelector('.dice').innerHTML = ;
   // update round score
   roundScore = document.querySelector('#score-' + currentPlayer).textContent;
   roundScore = parseInt(roundScore) + parseInt(dice);
