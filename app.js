@@ -37,17 +37,18 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
   // randomly generate a number between 1 and 6 inclusive
   var dice = Math.floor(Math.random()*6) + 1;
   // display outcome of roll after value of dice is set
-  document.querySelector('#current-' + currentPlayer).innerHTML = dice;
+  document.querySelector('#current-' + currentPlayer).textContent = dice;
   // seleta nd save value dice DOM element
   var diceDOM = document.querySelector('.dice');
   // show dice element
   diceDOM.style.display = 'block';
   // update img src of dice DOM element
   diceDOM.src = 'dice-' + dice + '.png';
-  // document.querySelector('.dice').innerHTML = ;
   // update round score
   roundScore = document.querySelector('#score-' + currentPlayer).textContent;
-  roundScore = parseInt(roundScore) + parseInt(dice);
+  roundScore = parseInt(roundScore) + (dice);
+  console.log(roundScore + 1)
+  // roundScore = parseInt(roundScore) + parseInt(dice);
   // display round score
-  document.querySelector('#score-' + currentPlayer).innerHTML = roundScore;
+  document.querySelector('#score-' + currentPlayer).textContent = roundScore;
 });
